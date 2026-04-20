@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李志强 | 3D设计师高级作品集</title>
+    <meta name="description" content="7年经验3D设计师李志强个人作品集，专注产品三维渲染、视觉表现及AIGC技术应用。">
+    <meta name="keywords" content="李志强, 3D设计师, C4D渲染, Keyshot, 产品建模, AIGC渲染, 电商设计, 作品集">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #ffffff;
+            color: #111827; /* gray-900 */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* 核心渐变色类 */
+        .gradient-bg {
+            background: linear-gradient(135deg, #8b5cf6, #d946ef, #f43f5e);
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+            color: white;
+            border: none;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #8b5cf6, #d946ef);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(217, 70, 239, 0.3);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* === 极简杂志排版入场动效 === */
+        .hero-image-container {
+            clip-path: inset(100% 0 0 0);
+            animation: revealImage 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.2s forwards;
+        }
+        .hero-image {
+            transform: scale(1.3);
+            animation: scaleImage 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.2s forwards;
+        }
+        .hero-title {
+            clip-path: inset(100% 0 0 0);
+            transform: translateY(100px);
+            animation: revealTitle 1.4s cubic-bezier(0.77, 0, 0.175, 1) 0.6s forwards;
+        }
+        .hero-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 1.2s;
+        }
+        .hero-line-left {
+            transform: translateX(-100%);
+            animation: slideInLeft 1s cubic-bezier(0.77, 0, 0.175, 1) forwards 1.2s;
+        }
+        .hero-line-right {
+            transform: translateX(100%);
+            animation: slideInRight 1s cubic-bezier(0.77, 0, 0.175, 1) forwards 1.2s;
+        }
+
+        @keyframes revealImage {
+            0% { clip-path: inset(100% 0 0 0); }
+            100% { clip-path: inset(0 0 0 0); }
+        }
+        @keyframes scaleImage {
+            0% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        @keyframes revealTitle {
+            0% { clip-path: inset(100% 0 0 0); transform: translateY(100px); }
+            100% { clip-path: inset(0 0 0 0); transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            to { transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            to { transform: translateX(0); }
+        }
+
+        /* === 终极增强版：书籍展开 3D 透视容器与动画 === */
+        .perspective-container {
+            perspective: 3000px;
+            transform-style: preserve-3d;
+        }
+
+        /* === 高级卡片 3D 升起悬浮动效 (适配亮色与渐变阴影) === */
+        .hover-card-lift {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
+            position: relative;
+            z-index: 10;
+            transform-style: preserve-3d;
+        }
+        .hover-card-lift::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 0 rgba(217, 70, 239, 0);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+        .hover-card-lift:hover {
+            transform: translateY(-30px) translateZ(60px) scale(1.12) rotateX(12deg) rotateY(-12deg);
+            z-index: 50;
+        }
+        .hover-card-lift:hover::after {
+            box-shadow: -30px 50px 60px -20px rgba(217, 70, 239, 0.25), 0 35px 45px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 亮色模式玻璃拟态卡片 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(217, 70, 239, 0.1);
+            border-color: rgba(217, 70, 239, 0.3);
+        }
+
+        /* 跑马灯动画 */
+        .marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 2rem;
+        }
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* 单页面切换过渡动画 */
+        .page-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .page-hidden {
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+        .page-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            position: relative;
+            width: 100%;
+            height: auto;
+            visibility: visible;
+        }
+
+        /* 预加载动画 */
+        #preloader {
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* 交互特效卡片提升 */
+        .work-item {
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .work-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-50 selection:bg-fuchsia-500 selection:text-white">
+
+    <!-- 预加载动画 -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-white flex items-center justify-center">
+        <div class="flex flex-col items-center">
+            <div class="w-12 h-12 border-4 border-gray-100 border-t-fuchsia-500 rounded-full animate-spin mb-4"></div>
+            <span class="gradient-text text-xs font-bold tracking-[0.3em] uppercase animate-pulse">Loading Vision</span>
+        </div>
+    </div>
+
+    <!-- 全局导航栏 -->
+    <nav class="fixed w-full z-[70] bg-white/80 backdrop-blur-xl border-b border-gray-200 transition-all duration-300" id="main-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" onclick="goHome()" class="text-xl font-black tracking-tighter text-gray-900 group">
+                ZHIQIANG<span class="text-fuchsia-500 text-3xl group-hover:animate-pulse">.</span>3D
+            </a>
+            
+            <div class="hidden md:flex space-x-10 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <a href="#about" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">About 关于</a>
+                <a href="#resume" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">Resume 简历</a>
+                <a href="#services" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">Services 服务</a>
+                <a href="#ai-vision" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">AIGC 视觉</a>
+                <a href="#work" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">Works 项目</a>
+                <a href="#process" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">Process 流程</a>
+                <a href="#contact" onclick="goHome()" class="hover:text-fuchsia-500 transition-colors">Contact 联系</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button onclick="goHome(); setTimeout(()=>document.getElementById('contact').scrollIntoView(), 100);" class="hidden md:block gradient-bg px-6 py-2.5 rounded-full text-xs font-black shadow-lg shadow-fuchsia-500/30 transition-all transform hover:-translate-y-1 hover:shadow-xl hover:shadow-fuchsia-500/40 cursor-pointer">
+                    START PROJECT
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-900 hover:text-fuchsia-500 transition cursor-pointer">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端全屏菜单 -->
+    <div id="mobile-menu" class="fixed inset-0 z-[65] bg-white/98 backdrop-blur-xl flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <a href="#about" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">About 关于</a>
+        <a href="#resume" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">Resume 简历</a>
+        <a href="#services" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">Services 服务</a>
+        <a href="#ai-vision" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">AIGC 视觉</a>
+        <a href="#work" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">Works 项目</a>
+        <a href="#process" onclick="closeMobileMenu(); goHome();" class="text-2xl font-black text-gray-900 hover:text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">Process 流程</a>
+        <a href="#contact" onclick="closeMobileMenu(); goHome(); setTimeout(()=>document.getElementById('contact').scrollIntoView(), 100);" class="text-2xl font-black text-fuchsia-500 uppercase tracking-widest transition-transform hover:scale-110">Contact 联系</a>
+    </div>
+
+    <!-- ==================== 视图一：主页 (Main View) ==================== -->
+    <div id="main-view" class="page-transition page-visible">
+        
+        <!-- 首屏 (Hero) -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#fafafa] pt-20">
+            
+            <!-- 渐变色彩色氛围光 -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                <div class="absolute top-[10%] left-[10%] w-[40vw] h-[40vw] rounded-full bg-violet-400/10 blur-[100px] animate-float"></div>
+                <div class="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-pink-400/10 blur-[100px] animate-float" style="animation-delay: 2s;"></div>
+            </div>
+
+            <!-- 底部小字排版 -->
+            <div class="absolute bottom-12 left-6 md:left-12 text-[10px] font-black uppercase tracking-widest text-gray-400 leading-relaxed max-w-[150px] hero-fade-in z-20 hidden md:block">
+                3D RENDER &<br>AIGC VISUAL
+            </div>
+            <div class="absolute bottom-12 right-6 md:right-12 text-[10px] font-black uppercase tracking-widest text-gray-400 leading-relaxed text-right max-w-[150px] hero-fade-in z-20 hidden md:block">
+                LEAD DESIGNER<br>LI ZHIQIANG
+            </div>
+
+            <!-- 侧边横线切割 -->
+            <div class="absolute left-0 top-[45%] md:top-1/2 -translate-y-1/2 w-8 md:w-16 h-[2px] bg-gray-200 hero-line-left z-20"></div>
+            <div class="absolute right-0 top-[45%] md:top-1/2 -translate-y-1/2 w-8 md:w-16 h-[2px] bg-gray-200 hero-line-right z-20"></div>
+
+            <!-- 居中图片容器 -->
+            <div class="relative w-[85vw] md:w-[60vw] max-w-[700px] h-[50vh] md:h-[60vh] max-h-[600px] hero-image-container z-10 mt-24 md:mt-32 perspective-container mx-auto">
+                <div class="w-full h-full hover-card-lift cursor-pointer group shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden rounded-xl border border-gray-100" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'})">
+                    
+                    <!-- 动态轮播的图片组 -->
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover hero-image hero-slide-img opacity-100 transition-opacity duration-1000" alt="Workspace">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover hero-image hero-slide-img opacity-0 transition-opacity duration-1000" alt="Headset">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" class="absolute inset-0 w-full h-full object-cover hero-image hero-slide-img opacity-0 transition-opacity duration-1000" alt="Products">
+                    
+                    <!-- Hover 按钮提示 -->
+                    <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none z-20 backdrop-blur-[2px]">
+                        <span class="gradient-bg font-bold tracking-widest uppercase text-sm px-8 py-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-xl">Explore Work</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 巨型重叠文字水印 -->
+            <div class="absolute top-[25%] md:top-[22%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[30] w-full text-center pointer-events-none flex flex-col items-center justify-center">
+                <h1 class="text-[26vw] md:text-[24vw] font-black tracking-tighter text-gray-900/10 leading-none hero-title m-0 p-0 mix-blend-multiply">
+                    VISION
+                </h1>
+            </div>
+            
+        </section>
+
+        <!-- 关于我 (About) -->
+        <section id="about" class="py-32 px-6 bg-white relative border-t border-gray-100">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 relative group hover-card-lift">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Avatar" class="relative rounded-[2.5rem] grayscale group-hover:grayscale-0 transition duration-700 object-cover aspect-[4/5] w-full max-w-md mx-auto shadow-2xl shadow-gray-200">
+                    <div class="absolute bottom-6 right-6 md:-right-6 bg-white border border-gray-100 p-6 rounded-3xl shadow-xl glass-card animate-float" style="animation-delay: 1s;">
+                        <p class="gradient-text font-black text-3xl mb-1">7</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Years Exp.</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">About Me</h2>
+                    <h3 class="text-4xl md:text-5xl font-black mb-8 tracking-tighter text-gray-900">懂商业逻辑的<br>3D 视觉探索者。</h3>
+                    <div class="space-y-6 text-gray-600 leading-relaxed font-medium mb-10">
+                        <p>你好，我是李志强，一名拥有 7 年经验的 3D 设计师。我不仅是在“作图”，更是在为产品翻译它的商业价值。我擅长健身器材与 3C 产品的建模渲染，熟练将 3D 艺术与电商销售逻辑结合。</p>
+                        <p>此外，我拥有丰富的团队管理与流程 SOP 制定经验，并积极推动 AIGC 技术在渲染流程中的落地应用，用极具冲击力的视觉语言打破品类同质化。</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                        <div>
+                            <h4 class="text-gray-900 font-black mb-2">核心能力</h4>
+                            <p class="text-sm text-gray-500">产品三维渲染 / 视觉表现 / 团队管理</p>
+                        </div>
+                        <div>
+                            <h4 class="text-gray-900 font-black mb-2">软件栈</h4>
+                            <p class="text-sm text-gray-500">C4D / Photoshop / Keyshot / Rhino</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 个人简历 (Resume) -->
+        <section id="resume" class="py-32 px-6 bg-slate-50 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">Curriculum Vitae</h2>
+                        <h3 class="text-4xl md:text-5xl font-black tracking-tighter text-gray-900">个人简历与<br>专业经验。</h3>
+                    </div>
+                    <a href="#" class="inline-flex items-center space-x-2 border-2 border-gray-900 text-gray-900 bg-transparent px-8 py-3 rounded-full hover:bg-gray-900 hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 font-bold text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>下载 PDF 简历</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                    <!-- 经验列表 -->
+                    <div class="lg:col-span-7">
+                        <h4 class="text-2xl font-black mb-8 border-b border-gray-200 pb-4 text-gray-900">工作经验</h4>
+                        <div class="space-y-0">
+                            <!-- 经历 1 -->
+                            <div class="relative pl-10 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-3 before:h-3 before:bg-fuchsia-500 before:rounded-full after:content-[''] after:absolute after:left-[5px] after:top-5 after:w-0.5 after:h-full after:bg-gray-200 pb-10 hover:translate-x-2 transition-transform duration-300">
+                                <span class="gradient-text text-xs font-bold tracking-widest mb-2 block">2024.06 - 至今</span>
+                                <h5 class="text-xl font-bold mb-1 text-gray-900">3D 设计师</h5>
+                                <p class="text-gray-500 text-sm mb-3 font-medium">浙江御鹿电子科技有限公司</p>
+                                <p class="text-gray-600 text-sm leading-relaxed">统筹麦瑞克健身器材全品类三维渲染，负责团队管理、项目统筹、品质管控、流程优化、AIGC 技术落地与跨部门协同，完成渲染组 0-1 搭建及 SOP 制定。</p>
+                            </div>
+                            <!-- 经历 2 -->
+                            <div class="relative pl-10 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-3 before:h-3 before:bg-violet-500 before:rounded-full after:content-[''] after:absolute after:left-[5px] after:top-5 after:w-0.5 after:h-full after:bg-gray-200 pb-10 hover:translate-x-2 transition-transform duration-300">
+                                <span class="text-gray-500 text-xs font-bold tracking-widest mb-2 block">2022.07 - 2024.02</span>
+                                <h5 class="text-xl font-bold mb-1 text-gray-900">3D 设计师</h5>
+                                <p class="text-gray-500 text-sm mb-3 font-medium">深圳市维果时代科技有限公司</p>
+                                <p class="text-gray-600 text-sm leading-relaxed">制定三维渲染团队标准、优化工作流程，协助 3D 渲染与动画制作，维护更新产品 3D 模型库。</p>
+                            </div>
+                            <!-- 经历 3 -->
+                            <div class="relative pl-10 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-3 before:h-3 before:bg-rose-400 before:rounded-full after:content-[''] after:absolute after:left-[5px] after:top-5 after:w-0.5 after:h-full after:bg-gray-200 pb-10 hover:translate-x-2 transition-transform duration-300">
+                                <span class="text-gray-500 text-xs font-bold tracking-widest mb-2 block">2021.04 - 2022.07</span>
+                                <h5 class="text-xl font-bold mb-1 text-gray-900">3D 设计师</h5>
+                                <p class="text-gray-500 text-sm mb-3 font-medium">深圳市鑫泽源创新技术有限公司</p>
+                                <p class="text-gray-600 text-sm leading-relaxed">负责家具、健身类产品建模渲染，制作宣传及组装动画，协调设计部任务。</p>
+                            </div>
+                            <!-- 经历 4 -->
+                            <div class="relative pl-10 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-3 before:h-3 before:bg-gray-400 before:rounded-full pb-4 hover:translate-x-2 transition-transform duration-300">
+                                <span class="text-gray-500 text-xs font-bold tracking-widest mb-2 block">2019.05 - 2021.04</span>
+                                <h5 class="text-xl font-bold mb-1 text-gray-900">视觉设计师</h5>
+                                <p class="text-gray-500 text-sm mb-3 font-medium">深圳市赛辉电子有限公司</p>
+                                <p class="text-gray-600 text-sm leading-relaxed">负责 3C 类目产品建模渲染，对接工厂核对色号，把控店铺设计风格并完成设计任务。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：教育、荣誉与技能 -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <!-- 教育背景 -->
+                        <div>
+                            <h4 class="text-2xl font-black mb-8 border-b border-gray-200 pb-4 text-gray-900">教育背景</h4>
+                            <div class="glass-card p-8 rounded-[2rem] space-y-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <div>
+                                    <span class="text-gray-500 text-xs font-bold tracking-widest mb-1 block">2024 年</span>
+                                    <h5 class="text-lg font-bold mb-1 text-gray-900">法学</h5>
+                                    <p class="text-gray-500 text-sm">湘潭大学</p>
+                                </div>
+                                <div class="w-10 h-[1px] bg-gray-200"></div>
+                                <div>
+                                    <span class="text-gray-500 text-xs font-bold tracking-widest mb-1 block">2019 年</span>
+                                    <h5 class="text-lg font-bold mb-1 text-gray-900">工业设计</h5>
+                                    <p class="text-gray-500 text-sm">深圳技师学院</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 荣誉奖项 -->
+                        <div>
+                            <h4 class="text-2xl font-black mb-8 border-b border-gray-200 pb-4 text-gray-900">荣誉奖项 (Honors)</h4>
+                            <div class="glass-card p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <ul class="text-gray-600 text-sm space-y-4 font-medium">
+                                    <li class="flex items-start"><span class="mr-2">🏆</span> 玩具设计师（高级技工）</li>
+                                    <li class="flex items-start"><span class="mr-2">🏆</span> 2025 年 AIGC 优秀团队</li>
+                                    <li class="flex items-start"><span class="mr-2">🏆</span> 2024 年公司优秀个人、优秀项目、优秀团队</li>
+                                    <li class="flex items-start"><span class="mr-2">🏆</span> 公司优秀员工</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 专业技能 -->
+                        <div>
+                            <h4 class="text-2xl font-black mb-8 border-b border-gray-200 pb-4 text-gray-900">核心软件</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <!-- 技能 1: C4D -->
+                                <div class="group relative bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center overflow-hidden cursor-default shadow-sm hover:shadow-lg transition-all duration-500 aspect-square">
+                                    <div class="absolute inset-0 gradient-bg translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
+                                    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full transition-transform duration-500 group-hover:-translate-y-10 group-hover:opacity-0">
+                                        <svg class="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7.5v9l-8 4.5-8-4.5v-9l8-4.5 8 4.5zM12 12l8-4.5M12 12v9M12 12L4 7.5"></path></svg>
+                                        <span class="font-bold text-gray-900 text-sm">C4D</span>
+                                    </div>
+                                    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 translate-y-10 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                        <span class="text-4xl font-black text-white font-mono scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">95%</span>
+                                        <span class="text-[10px] text-white/90 font-bold uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">精通</span>
+                                    </div>
+                                </div>
+                                <!-- 技能 2: Photoshop -->
+                                <div class="group relative bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center overflow-hidden cursor-default shadow-sm hover:shadow-lg transition-all duration-500 aspect-square">
+                                    <div class="absolute inset-0 gradient-bg translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
+                                    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full transition-transform duration-500 group-hover:-translate-y-10 group-hover:opacity-0">
+                                        <svg class="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span class="font-bold text-gray-900 text-sm">Photoshop</span>
+                                    </div>
+                                    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 translate-y-10 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                        <span class="text-4xl font-black text-white font-mono scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">90%</span>
+                                        <span class="text-[10px] text-white/90 font-bold uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">极熟练</span>
+                                    </div>
+                                </div>
+                                <!-- 技能 3: Keyshot -->
+                                <div class="group relative bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center overflow-hidden cursor-default shadow-sm hover:shadow-lg transition-all duration-500 aspect-square">
+                                    <div class="absolute inset-0 gradient-bg translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
+                                    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full transition-transform duration-500 group-hover:-translate-y-10 group-hover:opacity-0">
+                                        <svg class="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                                        <span class="font-bold text-gray-900 text-sm">Keyshot</span>
+                                    </div>
+                                    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 translate-y-10 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                        <span class="text-4xl font-black text-white font-mono scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">90%</span>
+                                        <span class="text-[10px] text-white/90 font-bold uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">熟练运用</span>
+                                    </div>
+                                </div>
+                                <!-- 技能 4: Rhino -->
+                                <div class="group relative bg-white border border-gray-100 rounded-2xl flex flex-col items-center justify-center overflow-hidden cursor-default shadow-sm hover:shadow-lg transition-all duration-500 aspect-square">
+                                    <div class="absolute inset-0 gradient-bg translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0"></div>
+                                    <div class="relative z-10 flex flex-col items-center justify-center w-full h-full transition-transform duration-500 group-hover:-translate-y-10 group-hover:opacity-0">
+                                        <svg class="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                                        <span class="font-bold text-gray-900 text-sm">Rhino</span>
+                                    </div>
+                                    <div class="absolute inset-0 z-20 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 translate-y-10 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                        <span class="text-4xl font-black text-white font-mono scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">85%</span>
+                                        <span class="text-[10px] text-white/90 font-bold uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">商业建模</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务范畴 (Services) -->
+        <section id="services" class="py-32 px-6 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">Services</h2>
+                    <h3 class="text-4xl md:text-5xl font-black tracking-tighter text-gray-900">我能为你做什么。</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card bg-gray-50 p-10 rounded-[2rem] group cursor-default border border-gray-100">
+                        <div class="w-12 h-12 gradient-bg rounded-2xl mb-8 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-fuchsia-500/30 group-hover:scale-110 transition-transform">01</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">3D 产品渲染</h3>
+                        <p class="text-gray-500 leading-relaxed mb-6 font-medium">利用 C4D 与 Octane/Keyshot 打造极具质感的光影表现，精通健身器材与 3C 类目的极致细节还原。</p>
+                        <ul class="text-sm space-y-2 text-gray-400 font-medium">
+                            <li>• 复杂材质球调优</li>
+                            <li>• 商业级别布光</li>
+                            <li>• 创意场景搭建</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card bg-gray-50 p-10 rounded-[2rem] group cursor-default border border-gray-100">
+                        <div class="w-12 h-12 bg-gray-900 rounded-2xl mb-8 flex items-center justify-center text-white font-black text-xl shadow-lg group-hover:bg-fuchsia-500 transition-colors group-hover:scale-110">02</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">全案视觉策划</h3>
+                        <p class="text-gray-500 leading-relaxed mb-6 font-medium">不只是作图，我们从品牌定位出发，统筹策划整套大促活动视觉（S级、双11、年货节）。</p>
+                        <ul class="text-sm space-y-2 text-gray-400 font-medium">
+                            <li>• 活动 KV 创意</li>
+                            <li>• 视觉规范制定</li>
+                            <li>• 项目进度统筹</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card bg-gray-50 p-10 rounded-[2rem] group cursor-default border border-gray-100">
+                        <div class="w-12 h-12 bg-gray-900 rounded-2xl mb-8 flex items-center justify-center text-white font-black text-xl shadow-lg group-hover:bg-fuchsia-500 transition-colors group-hover:scale-110">03</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">SOP 团队管理</h3>
+                        <p class="text-gray-500 leading-relaxed mb-6 font-medium">丰富的团队 0-1 搭建与品控经验。可为企业梳理并建立高效的三维渲染团队标准与工作流。</p>
+                        <ul class="text-sm space-y-2 text-gray-400 font-medium">
+                            <li>• 渲染组架构搭建</li>
+                            <li>• 流程 SOP 制定</li>
+                            <li>• 跨部门协同管理</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card bg-gray-50 p-10 rounded-[2rem] group cursor-default border border-gray-100">
+                        <div class="w-12 h-12 bg-gray-900 rounded-2xl mb-8 flex items-center justify-center text-white font-black text-xl shadow-lg group-hover:bg-fuchsia-500 transition-colors group-hover:scale-110">04</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">产品动画制作</h3>
+                        <p class="text-gray-500 leading-relaxed mb-6 font-medium">熟练制作产品展示宣传片及组装动画，为高溢价的健身器材或 3C 数码赋予灵动的生命力。</p>
+                        <ul class="text-sm space-y-2 text-gray-400 font-medium">
+                            <li>• 产品概念宣传片</li>
+                            <li>• 安装结构演示动画</li>
+                            <li>• 三维动态运镜</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI 赋能设计 (AI-Empowered Design) -->
+        <section id="ai-vision" class="py-32 px-6 bg-slate-50 border-t border-gray-100 relative overflow-hidden">
+            <!-- 渐变光晕 -->
+            <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,rgba(217,70,239,0.05)_0%,transparent_50%)] pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">AI-Driven Workflow</h2>
+                        <h3 class="text-4xl md:text-5xl font-black tracking-tighter text-gray-900">拥抱 AIGC<br>重塑生产力边界。</h3>
+                    </div>
+                    <p class="text-gray-500 max-w-md font-medium leading-relaxed">
+                        在企业内多次落地 AIGC 渲染应用。熟练将前沿 AI 工具接入工作流，在保证顶尖视觉质量的同时实现团队降本增效。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- AI 模块 1: 场景生成 -->
+                    <div class="glass-card bg-white p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 items-center group cursor-pointer border border-gray-100 hover-card-lift"
+                         data-title="高效场景生成案例" 
+                         data-category="AIGC / 场景合成" 
+                         data-desc="利用 Midjourney 配合线稿 ControlNet，为产品快速生成匹配的商业背景，大幅节省实景搭建成本。在该案例中，我们将原本干瘪的产品白模完美融入了极具质感的高级护肤品展台氛围中。" 
+                         data-images='["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200", "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200"]'
+                         onclick="openProjectDetail(this)">
+                        <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden relative bg-gray-200">
+                            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=400')] bg-cover bg-center grayscale opacity-50"></div>
+                            <div class="absolute inset-y-0 right-0 w-1/2 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=400')] bg-cover bg-center border-l-2 border-fuchsia-500 shadow-[-10px_0_20px_rgba(0,0,0,0.1)] group-hover:w-[75%] transition-all duration-700 pointer-events-none"></div>
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black text-gray-900 pointer-events-none shadow-sm">线稿直出背景</div>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-xl font-black mb-3 text-gray-900 group-hover:text-fuchsia-500 transition-colors">高效场景生成</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-4 font-medium">利用 AI 快速生成海量电商背景氛围图，完美融合 3D 渲染产品，摆脱传统实拍的场地与成本限制。</p>
+                            <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-xs font-bold tracking-widest mt-2 group-hover:translate-x-2 transition-all">
+                                <span>查看实际案例</span>
+                                <span>→</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- AI 模块 2: 虚拟模特 -->
+                    <div class="glass-card bg-white p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 items-center group cursor-pointer border border-gray-100 hover-card-lift"
+                         data-title="虚拟模特与智能穿戴" 
+                         data-category="AIGC / 模特换装" 
+                         data-desc="通过 Stable Diffusion 训练特定服装 Lora，实现一键替换模特肤色、姿态及场景，高效产出多样化买家秀素材。避免了传统外模棚拍的高昂费用及漫长排期。" 
+                         data-images='["https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1200", "https://images.unsplash.com/photo-1512496015851-a1fbbf694a15?auto=format&fit=crop&q=80&w=1200"]'
+                         onclick="openProjectDetail(this)">
+                        <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden relative bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400" alt="Model" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black text-gray-900 pointer-events-none shadow-sm">AI 虚拟模特穿戴</div>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-xl font-black mb-3 text-gray-900 group-hover:text-fuchsia-500 transition-colors">智能模特与换装</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-4 font-medium">通过定制化模型训练，实现服装、饰品的 AI 模特穿戴效果。多肤色、多风格一键切换，大幅提升出图效率。</p>
+                            <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-xs font-bold tracking-widest mt-2 group-hover:translate-x-2 transition-all">
+                                <span>查看实际案例</span>
+                                <span>→</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- AI 模块 3: 材质贴图 -->
+                    <div class="glass-card bg-white p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 items-center group cursor-pointer border border-gray-100 hover-card-lift"
+                         data-title="超写实材质贴图生成" 
+                         data-category="AIGC / 3D 资产辅助" 
+                         data-desc="利用 AI 算法一键生成 8K 级别的无缝 PBR 材质（法线、粗糙度、置换图），极大丰富了 3D 渲染中的物理真实感。这个案例中展示了我们利用 AI 快速生成的金属磨砂材质在 C4D 中的实际应用表现。" 
+                         data-images='["https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=1200", "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200"]'
+                         onclick="openProjectDetail(this)">
+                        <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden relative bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=400" alt="Texture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 pointer-events-none">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black text-gray-900 pointer-events-none shadow-sm">AI 材质节点生成</div>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-xl font-black mb-3 text-gray-900 group-hover:text-fuchsia-500 transition-colors">无缝材质与纹理</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-4 font-medium">运用 AI 算法无缝生成 8K 超高清材质贴图（法线、置换、粗糙度），为 C4D 物理渲染提供极致真实与丰富的微观细节表现。</p>
+                            <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-xs font-bold tracking-widest mt-2 group-hover:translate-x-2 transition-all">
+                                <span>查看实际案例</span>
+                                <span>→</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- AI 模块 4: 智能扩图 -->
+                    <div class="glass-card bg-white p-8 rounded-[2rem] flex flex-col md:flex-row gap-8 items-center group cursor-pointer border border-gray-100 hover-card-lift"
+                         data-title="生成式智能扩图与重绘" 
+                         data-category="AIGC / 尺寸延展" 
+                         data-desc="基于现有的方形/竖屏视觉素材，使用 AI 智能延展为横屏 Banner，或进行局部元素的重绘替换。该技术完美解决了同一视觉核心在不同电商平台（淘宝、京东、抖音等）资源位尺寸要求不一的适配痛点。" 
+                         data-images='["https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200", "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"]'
+                         onclick="openProjectDetail(this)">
+                        <div class="w-full md:w-1/2 aspect-video rounded-xl overflow-hidden relative bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400" alt="Expand" class="w-full h-full object-cover transition duration-700 group-hover:-translate-x-4 pointer-events-none">
+                            <div class="absolute inset-y-0 right-0 w-1/3 bg-white/60 border-l-2 border-dashed border-fuchsia-500 flex items-center justify-center backdrop-blur-sm group-hover:w-[15%] transition-all duration-700 overflow-hidden pointer-events-none">
+                                <span class="text-fuchsia-600 text-xs font-bold whitespace-nowrap opacity-100 group-hover:opacity-0 transition-opacity drop-shadow-sm">智能延展区</span>
+                            </div>
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black text-gray-900 pointer-events-none shadow-sm">生成式填充扩图</div>
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h4 class="text-xl font-black mb-3 text-gray-900 group-hover:text-fuchsia-500 transition-colors">智能延展与重绘</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-4 font-medium">告别传统繁琐的修补扣图，通过 AI 局部重绘与生成式填充，一键实现多尺寸横竖版 Banner 延展，轻松适配全平台资源位。</p>
+                            <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-xs font-bold tracking-widest mt-2 group-hover:translate-x-2 transition-all">
+                                <span>查看实际案例</span>
+                                <span>→</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI 视觉实验室 (AI Gallery) - 保持黑底凸显图片色彩张力，加入渐变文字 -->
+        <section class="py-20 px-6 bg-gray-900 border-t border-gray-800">
+            <div class="max-w-[1600px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">AIGC Gallery & Prompts</h2>
+                        <h3 class="text-4xl md:text-5xl font-black tracking-tighter text-white">AI 视觉实验室<br>探索无界想象。</h3>
+                    </div>
+                    <p class="text-gray-400 max-w-md font-medium leading-relaxed">
+                        深色模式查看区。鼠标悬停图像显示 <span class="text-fuchsia-400 font-bold">AI 提示词 (Prompt)</span>。支持点击查看超高清原图与生成策略。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- AI 作品 1 -->
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] group bg-black cursor-pointer shadow-2xl work-item hover-card-lift"
+                         data-title="超现实几何概念" 
+                         data-category="AIGC / Midjourney v6" 
+                         data-desc="通过 Midjourney 生成的超现实主义几何空间概念图。熟练运用光影提示词与材质权重，打造极具未来感的背景素材，可用于科技类产品的背景合成。" 
+                         data-images='["https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1600"]'
+                         onclick="openProjectDetail(this)">
+                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="text-fuchsia-400 text-xs font-mono mb-3 backdrop-blur-md bg-white/10 border border-white/20 inline-block px-4 py-2 rounded-full w-max">/imagine prompt:</span>
+                            <p class="text-white text-sm font-medium leading-relaxed line-clamp-3 pointer-events-none">Surreal abstract geometric shapes, glowing neon gradient, floating in dark void, glassmorphism, highly detailed, 8k resolution, octane render --ar 4:5</p>
+                            <span class="mt-5 text-[10px] uppercase tracking-widest gradient-bg text-white w-max px-4 py-2 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">点击查看高清</span>
+                        </div>
+                    </div>
+
+                    <!-- AI 作品 2 -->
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] group bg-black cursor-pointer md:translate-y-12 shadow-2xl work-item hover-card-lift"
+                         data-title="液态金属与美妆背景" 
+                         data-category="AIGC / Stable Diffusion" 
+                         data-desc="探索液态流体与金属光泽在美妆类目中的应用。这段生成旨在模拟高端化妆品广告中的背景元素，通过精确控制提示词中的色彩倾向，得到了这种具有奢华感与神秘感的成图效果。" 
+                         data-images='["https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1600"]'
+                         onclick="openProjectDetail(this)">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000" alt="[Image of Liquid Metal]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="text-fuchsia-400 text-xs font-mono mb-3 backdrop-blur-md bg-white/10 border border-white/20 inline-block px-4 py-2 rounded-full w-max">/imagine prompt:</span>
+                            <p class="text-white text-sm font-medium leading-relaxed line-clamp-3 pointer-events-none">Futuristic liquid metal flowing, iridescent colors, luxury cosmetic background, macro photography, studio lighting, hyper-realistic --v 6.0</p>
+                            <span class="mt-5 text-[10px] uppercase tracking-widest gradient-bg text-white w-max px-4 py-2 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">点击查看高清</span>
+                        </div>
+                    </div>
+
+                    <!-- AI 作品 3 -->
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] group bg-black cursor-pointer shadow-2xl work-item hover-card-lift"
+                         data-title="赛博朋克机械细节" 
+                         data-category="AIGC / Concept Art" 
+                         data-desc="针对 3C 数码类目进行的灵感脑暴探索图。使用 AI 工具快速生成大量的机械结构细节与赛博朋克光影氛围，为后续使用 C4D 真正搭建产品场景时提供了极具价值的光影参考和构图灵感。" 
+                         data-images='["https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80&w=1600"]'
+                         onclick="openProjectDetail(this)">
+                        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <span class="text-fuchsia-400 text-xs font-mono mb-3 backdrop-blur-md bg-white/10 border border-white/20 inline-block px-4 py-2 rounded-full w-max">/imagine prompt:</span>
+                            <p class="text-white text-sm font-medium leading-relaxed line-clamp-3 pointer-events-none">Cyberpunk tech product showcase, mechanical details, neon pink and blue lighting, metallic textures, cinematic lighting, 8k --stylize 250</p>
+                            <span class="mt-5 text-[10px] uppercase tracking-widest gradient-bg text-white w-max px-4 py-2 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">点击查看高清</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 品牌墙 (Marquee) -->
+        <div class="py-12 border-y border-gray-100 bg-white overflow-hidden">
+            <div class="marquee">
+                <div class="marquee-content">
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">HUAWEI</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Perfect Diary</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">L'Oreal</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Razer</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Xiaomi</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Nike</span>
+                </div>
+                <div class="marquee-content">
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">HUAWEI</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Perfect Diary</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">L'Oreal</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Razer</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Xiaomi</span>
+                    <span class="text-2xl font-black text-gray-300 mx-8 uppercase">Nike</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品展示网格 (带入二级页面的入口) -->
+        <section id="work" class="py-32 px-6 max-w-[1600px] mx-auto bg-white rounded-b-[4rem]">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-5xl font-black mb-4 tracking-tighter text-gray-900">精选案例</h2>
+                    <p class="text-gray-500 font-medium">这里的每一个像素都经过精心雕琢。点击卡片进入<strong class="text-fuchsia-500">详情二级页面</strong>。</p>
+                </div>
+                <div class="flex flex-wrap gap-3 mt-8 md:mt-0" id="filters">
+                    <button onclick="filterWork('all')" class="filter-btn active px-8 py-2.5 rounded-full border border-gray-200 text-xs font-bold transition-all text-gray-500 hover:border-fuchsia-500">ALL全部</button>
+                    <button onclick="filterWork('3d')" class="filter-btn px-8 py-2.5 rounded-full border border-gray-200 text-xs font-bold transition-all text-gray-500 hover:border-fuchsia-500">3D RENDER</button>
+                    <button onclick="filterWork('detail')" class="filter-btn px-8 py-2.5 rounded-full border border-gray-200 text-xs font-bold transition-all text-gray-500 hover:border-fuchsia-500">DETAILS详情</button>
+                    <button onclick="filterWork('motion')" class="filter-btn px-8 py-2.5 rounded-full border border-gray-200 text-xs font-bold transition-all text-gray-500 hover:border-fuchsia-500">MOTION动画</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8" id="portfolio-grid">
+                
+                <!-- 案例 0: 动态视觉 (动画板块) -->
+                <div class="md:col-span-12 work-item motion group shadow-xl rounded-[2.5rem] hover-card-lift cursor-pointer">
+                    <div class="relative overflow-hidden rounded-[2.5rem] bg-gray-100 aspect-video md:aspect-[21/9]">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                            <source src="https://cdn.pixabay.com/video/2020/07/22/45366-443360407_large.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-10 left-10 pointer-events-none">
+                            <span class="gradient-bg text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block shadow-lg">Motion Design</span>
+                            <h3 class="text-3xl font-black text-white drop-shadow-md">产品概念动画演绎</h3>
+                            <p class="text-white/90 mt-2 font-medium">C4D 粒子流体模拟 / 动态运镜 / 视觉特效</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 1: 带有详情数据的卡片 -->
+                <div class="md:col-span-7 work-item 3d group cursor-pointer shadow-xl rounded-[2.5rem] hover-card-lift" 
+                     data-title="亚马逊-母婴背带" 
+                     data-category="亚马逊主图 / 详情页视觉设计" 
+                     data-desc="该项目围绕亚马逊母婴背带产品展开，重点呈现产品的包裹支撑、人体工学结构、面料细节与多场景使用方式。我将页面视觉聚焦在安全感、舒适度和亲子互动氛围上，通过成套主图与详情页展示产品卖点，让用户能够快速理解背带的核心功能与使用价值。整组作品适用于亚马逊电商页面展示、广告投放素材与详情页转化场景。" 
+                     data-images='["image/1/image1.png", "image/1/image2.png", "image/1/image3.png", "image/1/image4.jpg", "image/1/image5.png", "image/1/image6.png", "image/1/image7.png", "image/1/image8.png", "image/1/image9.png", "image/1/image10.png"]'
+                     onclick="openProjectDetail(this)">
+                    
+                    <div class="relative overflow-hidden rounded-[2.5rem] bg-gray-100 aspect-[16/10]">
+                        <img src="image/1/image1.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                        <div class="absolute top-8 right-8 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg group-hover:bg-fuchsia-500 group-hover:text-white transition-colors pointer-events-none border border-gray-200">
+                            查看详情 →
+                        </div>
+                        <div class="absolute bottom-10 left-10 pointer-events-none">
+                            <span class="bg-white text-gray-900 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block shadow-md">Featured</span>
+                            <h3 class="text-3xl font-black text-white">亚马逊-母婴背带</h3>
+                            <p class="text-white/90 mt-2 font-medium">主图设计 / 详情页排版 / 卖点视觉表达</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 2 -->
+                <div class="md:col-span-5 work-item detail group cursor-pointer shadow-xl rounded-[2.5rem] hover-card-lift" 
+                     data-title="Ethereal Skincare 品牌升级" 
+                     data-category="全案设计 / 详情页结构化" 
+                     data-desc="这是为高端护肤品牌 Ethereal 策划的双十一大促详情页全案。我们重构了原有的卖点逻辑，将枯燥的成分表转化为直观的光影视觉图。项目中大量运用了微距流体拍摄与 C4D 结合的技术，展示了精华液的轻盈质感。长图的跳出率相比旧版降低了 30%。" 
+                     data-images='["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200", "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=1200"]'
+                     onclick="openProjectDetail(this)">
+                    
+                    <div class="relative overflow-hidden rounded-[2.5rem] bg-gray-100 aspect-[4/5]">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="[Image of Skincare]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                        <div class="absolute top-8 right-8 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg group-hover:bg-fuchsia-500 group-hover:text-white transition-colors pointer-events-none border border-gray-200">
+                            查看详情 →
+                        </div>
+                        <div class="absolute bottom-10 left-10 pointer-events-none">
+                            <h3 class="text-2xl font-black text-white">Ethereal Skincare</h3>
+                            <p class="text-white/90 mt-2 font-medium">高端护肤品全案设计 / 卖点拆解</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 案例 3 -->
+                <div class="md:col-span-12 work-item detail group cursor-pointer shadow-xl rounded-[2.5rem] hover-card-lift" 
+                     data-title="Smart Home 年货节主视觉" 
+                     data-category="活动 KV / 空间渲染" 
+                     data-desc="智能家居品牌年货节的核心视觉呈现。为了打破传统科技产品冷冰冰的印象，我们搭建了一个温馨的虚拟客厅环境，通过暖色调的环境光和精致的软装搭配，将智能中控屏、扫地机器人自然地融入到家庭氛围中。该项目包含一张主 KV 及多张移动端适配的 Banner 切图。" 
+                     data-images='["https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600", "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1600", "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1600"]'
+                     onclick="openProjectDetail(this)">
+                     
+                    <div class="relative overflow-hidden rounded-[2.5rem] aspect-[21/9] bg-gray-100 md:h-full">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="[Image of Room Render]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none"></div>
+                        <div class="absolute top-8 right-8 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg group-hover:bg-fuchsia-500 group-hover:text-white transition-colors pointer-events-none border border-gray-200">
+                            全案详情 →
+                        </div>
+                        <div class="absolute bottom-10 left-10 pointer-events-none">
+                            <h3 class="text-3xl font-black text-white">Smart Home 年货节全案</h3>
+                            <p class="text-white/90 mt-2 font-medium">智能家居大促主 KV 及多端落地页设计</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 工作流程与解决方案 (Process & Solutions) -->
+        <section id="process" class="py-32 px-6 bg-slate-50 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
+                    <div>
+                        <h2 class="text-sm font-bold tracking-[0.3em] uppercase mb-4 gradient-text">Workflows & Solutions</h2>
+                        <h3 class="text-4xl md:text-5xl font-black tracking-tighter text-gray-900">定制化工作流<br>与解决方案。</h3>
+                    </div>
+                    <p class="text-gray-500 max-w-md font-medium leading-relaxed">
+                        针对不同量级的商业需求，我沉淀了多套成熟的设计工作流。点击卡片查看为您量身定制的具体解决方案与实际案例。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 流程 1: 3D 定制 -->
+                    <div class="glass-card bg-white border border-gray-200 p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden hover-card-lift" onclick="openProcessModal('3d')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all pointer-events-none"></div>
+                        <h4 class="text-2xl font-black mb-4 text-gray-900 group-hover:text-fuchsia-500 transition-colors">3D 产品视觉渲染</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-auto md:h-20 font-medium">适用于新品首发、核心主推款。从白模搭建到电影级光影输出的高端定制流程。</p>
+                        <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-sm font-bold tracking-widest uppercase bg-slate-50 px-4 py-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow border border-gray-100">
+                            <span>查看方案</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </span>
+                    </div>
+                    
+                    <!-- 流程 2: 大促全案 -->
+                    <div class="glass-card bg-white border border-gray-200 p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden hover-card-lift" onclick="openProcessModal('campaign')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-fuchsia-500/10 rounded-full blur-3xl group-hover:bg-fuchsia-500/20 transition-all pointer-events-none"></div>
+                        <h4 class="text-2xl font-black mb-4 text-gray-900 group-hover:text-fuchsia-500 transition-colors">电商 S 级大促全案</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-auto md:h-20 font-medium">适用于双11、618等大型节点。涵盖主视觉KV策划、延展物料与落地页规范体系。</p>
+                        <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-sm font-bold tracking-widest uppercase bg-slate-50 px-4 py-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow border border-gray-100">
+                            <span>查看方案</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </span>
+                    </div>
+                    
+                    <!-- 流程 3: AIGC 降本 -->
+                    <div class="glass-card bg-white border border-gray-200 p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden hover-card-lift" onclick="openProcessModal('aigc')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl group-hover:bg-pink-500/20 transition-all pointer-events-none"></div>
+                        <h4 class="text-2xl font-black mb-4 text-gray-900 group-hover:text-fuchsia-500 transition-colors">AIGC 降本增效产出</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-auto md:h-20 font-medium">适用于高频次、大批量的日常运营图。结合 Midjourney/SD 实现高质量快速出图。</p>
+                        <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-sm font-bold tracking-widest uppercase bg-slate-50 px-4 py-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow border border-gray-100">
+                            <span>查看方案</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </span>
+                    </div>
+
+                    <!-- 流程 4: 动画制作 -->
+                    <div class="glass-card bg-white border border-gray-200 p-10 rounded-[2rem] cursor-pointer group relative overflow-hidden hover-card-lift" onclick="openProcessModal('animation')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all pointer-events-none"></div>
+                        <h4 class="text-2xl font-black mb-4 text-gray-900 group-hover:text-fuchsia-500 transition-colors">产品概念动画制作</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8 h-auto md:h-20 font-medium">适用于高溢价产品。通过三维物理引擎与流体特效打造极具张力的视觉大片。</p>
+                        <span class="inline-flex items-center space-x-2 text-fuchsia-500 text-sm font-bold tracking-widest uppercase bg-slate-50 px-4 py-2 rounded-full shadow-sm group-hover:shadow-md transition-shadow border border-gray-100">
+                            <span>查看方案</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部联系 (Contact) -->
+        <section id="contact" class="py-32 px-6 bg-white relative border-t border-gray-100">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
+                <div class="flex-1">
+                    <h2 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter text-gray-900">LET'S<br>BUILD<br><span class="gradient-text">GROWTH.</span></h2>
+                    <div class="space-y-4">
+                        <p class="text-2xl font-bold text-gray-900">Email: 903211183@qq.com</p>
+                        <p class="text-gray-500">WeChat / Tel: 13242038841</p>
+                    </div>
+                </div>
+                <div class="flex-1 bg-slate-50 p-8 md:p-12 rounded-[2.5rem] shadow-2xl animate-float border border-gray-200" style="animation-delay: 0.5s;">
+                    <form id="contact-form" class="space-y-6" onsubmit="submitForm(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" required placeholder="您的称呼" class="bg-white text-gray-900 border border-gray-200 p-5 rounded-2xl focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 outline-none transition-all">
+                            <input type="text" placeholder="您的品牌" class="bg-white text-gray-900 border border-gray-200 p-5 rounded-2xl focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 outline-none transition-all">
+                        </div>
+                        <select class="w-full bg-white text-gray-500 border border-gray-200 p-5 rounded-2xl focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 outline-none transition-all">
+                            <option>项目类型</option>
+                            <option>3D 渲染</option>
+                            <option>详情页全案</option>
+                            <option>长期视觉合作</option>
+                        </select>
+                        <textarea rows="4" required placeholder="简述您的需求..." class="w-full bg-white text-gray-900 border border-gray-200 p-5 rounded-2xl focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 outline-none transition-all resize-none"></textarea>
+                        <button type="submit" class="w-full gradient-bg text-white py-5 rounded-2xl font-black hover:shadow-2xl hover:shadow-fuchsia-500/40 transition-all cursor-pointer transform hover:-translate-y-1">提交合作申请</button>
+                    </form>
+
+                    <!-- 提交成功提示 -->
+                    <div id="form-success" class="hidden h-full flex flex-col items-center justify-center text-center py-10">
+                        <div class="w-20 h-20 bg-fuchsia-100 text-fuchsia-500 rounded-full flex items-center justify-center mb-6 shadow-inner border border-fuchsia-200">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h4 class="text-3xl font-black text-gray-900 mb-4">提交成功！</h4>
+                        <p class="text-gray-500 font-medium">我已经收到您的项目需求，会尽快与您取得联系。</p>
+                        <button onclick="resetForm()" class="mt-8 border border-gray-300 text-gray-500 px-8 py-3 rounded-full text-sm font-bold hover:border-fuchsia-500 hover:text-fuchsia-500 transition-all cursor-pointer">再发送一条</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="py-12 bg-white text-center text-gray-400 text-[10px] tracking-widest uppercase border-t border-gray-100">
+            <div class="flex justify-center space-x-8 mb-6 font-bold text-xs">
+                <a href="https://www.zcool.com.cn/u/19092232" target="_blank" class="hover:text-fuchsia-500 transition-colors">站酷 (Zcool)</a>
+                <a href="https://www.xiaohongshu.com/user/profile/5ad0080211be1021a3fb3acc" target="_blank" class="hover:text-fuchsia-500 transition-colors">小红书</a>
+                <a href="#" class="hover:text-fuchsia-500 transition-colors">Behance</a>
+            </div>
+            <p>© 2024 LI ZHIQIANG / 专注视觉转化与 3D 商业设计</p>
+        </footer>
+    </div>
+    <!-- ==================== 主页 (Main View) 结束 ==================== -->
+
+    <!-- 解决方案详情弹窗 (Process Solutions Modal) -->
+    <div id="process-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4 md:p-6 bg-gray-900/40 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div id="pm-content-box" class="bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <!-- 关闭按钮 -->
+            <button onclick="closeProcessModal()" class="absolute top-6 right-6 md:top-8 md:right-8 bg-gray-100 border border-gray-200 text-gray-500 w-12 h-12 rounded-full flex items-center justify-center hover:bg-fuchsia-500 hover:text-white transition-colors z-20 cursor-pointer shadow-sm">
+                <span class="text-2xl leading-none mb-1">&times;</span>
+            </button>
+            
+            <div id="pm-cover" class="w-full h-48 md:h-64 bg-cover bg-center rounded-3xl mb-10 shadow-inner relative overflow-hidden" style="background-image: url('')">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent"></div>
+            </div>
+
+            <div class="mb-12 relative z-10 -mt-20 md:-mt-24 px-6 md:px-8">
+                <span class="gradient-bg text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block shadow-md">Workflow Solution</span>
+                <h3 id="pm-title" class="text-3xl md:text-5xl font-black text-white tracking-tighter mb-4 drop-shadow-lg"></h3>
+                <p id="pm-desc" class="text-white/90 leading-relaxed max-w-2xl font-medium drop-shadow-md"></p>
+            </div>
+            
+            <div id="pm-steps" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            
+            <div class="mt-12 flex flex-col md:flex-row gap-4 justify-center pt-8 border-t border-gray-100">
+                <button id="pm-view-cases-btn" class="bg-slate-50 text-gray-900 border border-gray-200 px-8 py-4 rounded-full font-bold hover:bg-gray-100 hover:text-fuchsia-600 transition-colors cursor-pointer flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    查看相关案例作品
+                </button>
+                <button onclick="closeProcessModal(); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 300);" class="gradient-bg px-8 py-4 rounded-full font-black shadow-xl shadow-fuchsia-500/30 hover:shadow-2xl transform hover:-translate-y-1 cursor-pointer transition-all">
+                    就选这个方案，联系我
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 视图二：二级详情页 (Detail View) ==================== -->
+    <div id="detail-view" class="page-transition page-hidden bg-white min-h-screen pb-32">
+        
+        <div class="fixed w-full z-[65] bg-white/90 backdrop-blur-xl border-b border-gray-200 top-20 shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+                <button onclick="closeProjectDetail()" class="text-sm font-bold text-gray-500 hover:text-fuchsia-500 transition-colors flex items-center gap-2 group cursor-pointer bg-slate-50 px-4 py-2 rounded-full border border-gray-200">
+                    <span class="group-hover:-translate-x-1 transition-transform">←</span> 返回项目列表
+                </button>
+                <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase">Project Detail</span>
+            </div>
+        </div>
+
+        <div id="detail-cover" class="w-full h-[60vh] md:h-[75vh] bg-cover bg-center relative mt-20" style="background-image: url('');">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 -mt-32 relative z-10">
+            <div class="mb-16 bg-white p-10 rounded-3xl shadow-2xl border border-gray-100 animate-float" style="animation-delay: 0.2s; animation-duration: 6s;">
+                <span id="detail-category" class="gradient-bg px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 inline-block shadow-md"></span>
+                <h1 id="detail-title" class="text-4xl md:text-6xl font-black mb-8 tracking-tighter text-gray-900"></h1>
+                <div class="w-16 h-1.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mb-8 rounded-full"></div>
+                <h3 class="text-xl font-black mb-4 text-gray-900">项目背景与说明</h3>
+                <p id="detail-desc" class="text-gray-600 text-base md:text-lg leading-relaxed font-medium whitespace-pre-wrap"></p>
+            </div>
+
+            <div id="detail-gallery" class="space-y-10 flex flex-col items-center"></div>
+
+            <div class="mt-24 text-center border-t border-gray-100 pt-16">
+                <button onclick="closeProjectDetail()" class="inline-block bg-gray-900 text-white px-12 py-5 rounded-full font-black hover:bg-fuchsia-500 hover:shadow-xl hover:shadow-fuchsia-500/30 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                    阅毕，返回项目大厅
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回到顶部浮动按钮 -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-10 right-10 z-[80] bg-white border border-gray-200 text-gray-900 w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:text-white hover:border-transparent hover:bg-fuchsia-500 hover:scale-110 transition-all duration-300 translate-y-24 opacity-0 cursor-pointer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        // --- 核心：单页面应用(SPA) 视图切换逻辑 ---
+        const mainView = document.getElementById('main-view');
+        const detailView = document.getElementById('detail-view');
+        
+        function goHome() {
+            if (detailView && !detailView.classList.contains('page-hidden')) {
+                closeProjectDetail(false);
+            }
+        }
+
+        function openProjectDetail(element) {
+            if(!element || !detailView || !mainView) return;
+            
+            const title = element.getAttribute('data-title') || '';
+            const category = element.getAttribute('data-category') || '';
+            const desc = element.getAttribute('data-desc') || '';
+            let imagesArray = [];
+            try {
+                imagesArray = JSON.parse(element.getAttribute('data-images') || '[]');
+            } catch (e) {
+                console.error('Invalid image data');
+            }
+
+            document.getElementById('detail-title').innerText = title;
+            document.getElementById('detail-category').innerText = category;
+            document.getElementById('detail-desc').innerText = desc;
+            
+            if(imagesArray.length > 0) {
+                document.getElementById('detail-cover').style.backgroundImage = `url('${imagesArray[0]}')`;
+            }
+
+            const gallery = document.getElementById('detail-gallery');
+            if(gallery) {
+                gallery.innerHTML = '';
+                imagesArray.forEach((src, idx) => {
+                    const animDelay = (idx * 0.1) + 's';
+                    const imgElement = `<img src="${src}" class="w-full max-w-5xl rounded-[2rem] shadow-2xl border border-gray-100 bg-slate-50 hover:shadow-fuchsia-500/10 hover:-translate-y-2 transition-all duration-500" style="animation: float 6s ease-in-out infinite ${animDelay};" alt="项目展示图">`;
+                    gallery.innerHTML += imgElement;
+                });
+            }
+
+            window.scrollTo({top: 0, behavior: 'instant'});
+            mainView.classList.remove('page-visible');
+            mainView.classList.add('page-hidden');
+            
+            detailView.classList.remove('page-hidden');
+            detailView.classList.add('page-visible');
+        }
+
+        function closeProjectDetail(scrollToWork = true) {
+            if(!detailView || !mainView) return;
+            
+            detailView.classList.remove('page-visible');
+            detailView.classList.add('page-hidden');
+            
+            mainView.classList.remove('page-hidden');
+            mainView.classList.add('page-visible');
+
+            if (scrollToWork) {
+                setTimeout(() => {
+                    const workSec = document.getElementById('work');
+                    if(workSec) workSec.scrollIntoView({behavior: 'smooth'});
+                }, 100);
+            }
+        }
+
+        function filterWork(category) {
+            const items = document.querySelectorAll('.work-item');
+            const btns = document.querySelectorAll('.filter-btn');
+            if(btns.length) {
+                btns.forEach(btn => btn.classList.remove('active'));
+                if(event && event.target) event.target.classList.add('active');
+            }
+            if(items.length) {
+                items.forEach(item => {
+                    if (category === 'all' || item.classList.contains(category)) {
+                        item.style.display = 'block';
+                        // 重新触发动画效果
+                        item.style.opacity = "0";
+                        item.style.transform = "translateY(20px) scale(0.95)";
+                        setTimeout(() => {
+                            item.style.opacity = "1";
+                            item.style.transform = "translateY(0) scale(1)";
+                        }, 50);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // 优化版滚动入场动画 (弹性缩放)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0) scale(1)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const animEls = document.querySelectorAll('section, .work-item, .glass-card, .hover-card-lift');
+        if(animEls.length) {
+            animEls.forEach(el => {
+                // 如果元素本身具有 hover-card-lift 类，则跳过 transform 的初始设置以防冲突，仅做淡入
+                if(el.classList.contains('hover-card-lift')) {
+                     el.style.opacity = "0";
+                     el.style.transition = "opacity 0.8s ease";
+                } else {
+                    el.style.opacity = "0";
+                    el.style.transform = "translateY(40px) scale(0.95)";
+                    el.style.transition = "all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)";
+                }
+                observer.observe(el);
+            });
+        }
+
+        // 导航栏滚动模糊效果切换
+        const mainNav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                mainNav.classList.add('shadow-sm');
+                mainNav.classList.replace('bg-white/80', 'bg-white/95');
+            } else {
+                mainNav.classList.remove('shadow-sm');
+                mainNav.classList.replace('bg-white/95', 'bg-white/80');
+            }
+        });
+
+        // 预加载隐藏
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if(preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.visibility = 'hidden';
+                }, 600);
+            }
+        });
+
+        // 移动端菜单
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('opacity-0')) {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        function closeMobileMenu() {
+            if (mobileMenu) {
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // 表单交互逻辑
+        function submitForm(event) {
+            if(event) event.preventDefault();
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success');
+            if (form && successMsg) {
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            }
+        }
+
+        function resetForm() {
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success');
+            if (form && successMsg) {
+                form.reset();
+                successMsg.classList.add('hidden');
+                form.classList.remove('hidden');
+            }
+        }
+
+        // === 首屏图片动态轮播逻辑 ===
+        const heroSlides = document.querySelectorAll('.hero-slide-img');
+        let heroCurrent = 0;
+        if (heroSlides.length > 0) {
+            setInterval(() => {
+                heroSlides[heroCurrent].classList.remove('opacity-100');
+                heroSlides[heroCurrent].classList.add('opacity-0');
+                heroCurrent = (heroCurrent + 1) % heroSlides.length;
+                heroSlides[heroCurrent].classList.remove('opacity-0');
+                heroSlides[heroCurrent].classList.add('opacity-100');
+            }, 4000);
+        }
+
+        // --- 解决方案弹窗 ---
+        const processData = {
+            '3d': {
+                title: '3D 产品视觉高端定制',
+                desc: '打破传统摄影的物理限制，通过 C4D + Octane 物理渲染器，为产品创造出极具商业转化力与视觉冲击力的光影表现。',
+                coverImg: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200',
+                relatedCategory: '3d',
+                steps: [
+                    { num: '01', name: '需求诊断与策略', text: '深入分析产品结构、核心卖点及受众画像，制定符合品牌调性的材质表现与光影氛围策略。' },
+                    { num: '02', name: '高精度资产建模', text: '根据 CAD 图纸或实物，进行 1:1 高精度拓扑建模，确保倒角、接缝等微观细节完美还原。' },
+                    { num: '03', name: '材质节点与打光', text: '搭建商业级摄影棚光照系统（如三点布光、逆光轮廓等），并调优复杂的物理材质节点。' },
+                    { num: '04', name: '分层渲染与精修', text: '输出多通道分层文件，并在 Photoshop 中进行像素级精修润色。' }
+                ]
+            },
+            'campaign': {
+                title: 'S 级大促全案策划',
+                desc: '为双十一、618等大型电商节点提供从 0 到 1 的视觉全案。确保大促期间全链路视觉的高度统一与超强氛围感。',
+                coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+                relatedCategory: 'detail',
+                steps: [
+                    { num: '01', name: '大促主题脑暴', text: '结合营销玩法与品牌调性，提出 2-3 个核心视觉创意方向（KV概念）供客户评估。' },
+                    { num: '02', name: '主视觉 KV 设定', text: '确定方向后，进行 3D 场景搭建或高质量合成，产出大促核心主视觉海报设计稿。' },
+                    { num: '03', name: '视觉规范推导', text: '基于主 KV 提取色彩规范、字体规范、点缀元素规范，制定《大促视觉组件指导手册》。' },
+                    { num: '04', name: '全链路物料延展', text: '将规范应用至 PC/移动端首页、承接页、各个资源位 Banner 及详情页头图，确保落地一致性。' }
+                ]
+            },
+            'aigc': {
+                title: 'AIGC 辅助降本增效',
+                desc: '融合 Midjourney、Stable Diffusion 等最前沿的 AI 工具，在保证高端视觉质量的前提下，极大压缩制作周期与成本。',
+                coverImg: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200',
+                relatedCategory: 'all',
+                steps: [
+                    { num: '01', name: '模型微调与 Lora', text: '根据品牌专属风格或产品特征，训练专属的 Lora 模型，确保 AI 生成的内容符合品牌规范。' },
+                    { num: '02', name: '海量场景生成', text: '利用提示词工程快速生成数百张不同风格的电商氛围背景图供筛选。' },
+                    { num: '03', name: '产品无缝融合', text: '将实拍产品或 3D 白模通过 ControlNet 等技术精确植入 AI 场景，处理光影与透视统一。' },
+                    { num: '04', name: 'AI 模特换装换肤', text: '针对服装/配饰类目，使用 AI 快速替换模特肤色、场景及穿搭效果，大幅降低模特棚拍成本。' }
+                ]
+            },
+            'animation': {
+                title: '产品概念动画与动效',
+                desc: '为产品打造极具视觉冲击力的动态演示。通过粒子、流体及柔体模拟等高端三维特效技术，让生硬的产品卖点变得灵动且富有说服力。',
+                coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+                relatedCategory: 'motion',
+                steps: [
+                    { num: '01', name: '分镜脚本策划', text: '根据产品核心卖点，策划关键帧分镜（Storyboard），确认镜头运动与整体视觉节奏。' },
+                    { num: '02', name: '场景与资产搭建', text: '构建三维场景环境，配置高精度模型资产与动态材质，进行初步的动画预演（Animatic）。' },
+                    { num: '03', name: '特效与物理模拟', text: '添加粒子特效、复杂流体（如水花、烟雾）或柔体物理碰撞模拟，增强动画的视觉张力。' },
+                    { num: '04', name: '最终渲染与后期', text: '输出多通道图像序列，并在后期软件中进行调色、光效叠加与音效合成，最终交付高质成片。' }
+                ]
+            }
+        };
+
+        function openProcessModal(id) {
+            const modal = document.getElementById('process-modal');
+            const contentBox = document.getElementById('pm-content-box');
+            const data = processData[id];
+            if(!data || !modal || !contentBox) return;
+
+            document.getElementById('pm-title').innerText = data.title;
+            document.getElementById('pm-desc').innerText = data.desc;
+            const pmCover = document.getElementById('pm-cover');
+            if(pmCover) pmCover.style.backgroundImage = `url('${data.coverImg}')`;
+            
+            const viewCasesBtn = document.getElementById('pm-view-cases-btn');
+            if(viewCasesBtn) {
+                viewCasesBtn.onclick = function() { viewRelatedCases(data.relatedCategory); };
+            }
+
+            const stepsContainer = document.getElementById('pm-steps');
+            if(stepsContainer) {
+                stepsContainer.innerHTML = '';
+                data.steps.forEach(step => {
+                    stepsContainer.innerHTML += `
+                        <div class="bg-gray-50 border border-gray-100 p-6 rounded-2xl relative overflow-hidden group hover:border-fuchsia-500/30 hover:bg-white hover:shadow-lg transition-all duration-300">
+                            <div class="text-7xl font-black text-gray-200 absolute -right-2 -bottom-4 group-hover:text-fuchsia-500/10 transition-colors select-none">${step.num}</div>
+                            <h5 class="text-xl font-bold text-gray-900 mb-2 relative z-10"><span class="text-fuchsia-500 mr-2">${step.num}.</span>${step.name}</h5>
+                            <p class="text-gray-500 text-sm leading-relaxed relative z-10">${step.text}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            modal.classList.add('opacity-100');
+            contentBox.classList.remove('scale-95');
+            contentBox.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProcessModal() {
+            const modal = document.getElementById('process-modal');
+            const contentBox = document.getElementById('pm-content-box');
+            if(!modal || !contentBox) return;
+
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            contentBox.classList.remove('scale-100');
+            contentBox.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function viewRelatedCases(category) {
+            closeProcessModal();
+            setTimeout(() => {
+                const workSection = document.getElementById('work');
+                if(workSection) {
+                    workSection.scrollIntoView({behavior: 'smooth'});
+                    filterWork(category);
+                    const btns = document.querySelectorAll('.filter-btn');
+                    if(btns.length) {
+                        btns.forEach(btn => btn.classList.remove('active'));
+                        const targetBtn = Array.from(btns).find(b => {
+                            if(category === 'all' && b.innerText.includes('ALL')) return true;
+                            if(category === '3d' && b.innerText.includes('3D')) return true;
+                            if(category === 'detail' && b.innerText.includes('DETAILS')) return true;
+                            if(category === 'motion' && b.innerText.includes('MOTION')) return true;
+                            return false;
+                        });
+                        if(targetBtn) targetBtn.classList.add('active');
+                    }
+                }
+            }, 350);
+        }
+
+        // 回到顶部按钮
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 600) {
+                    backToTopBtn.classList.remove('translate-y-24', 'opacity-0');
+                    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopBtn.classList.add('translate-y-24', 'opacity-0');
+                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
